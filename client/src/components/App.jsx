@@ -1,5 +1,7 @@
 import React from 'react';
 
-const App = () => <div>Hello World!</div>;
+import Grid from './Grid.jsx';
+
+const App = () => <Grid />;
 
 export default App;
