@@ -17,12 +17,31 @@ const Grid = () => {
   };
 
   const beginSimulation = (grid) => {
-    console.log(getNumberOfAliveNeighbors(grid, 0, 0))
+    const newGridTest = createGrid();
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[row].length; col++) {
+        if (grid[row][col].isAlive) {
+          if (getNumberOfAliveNeighbors(grid, row, col) < 2) {
+            newGridTest[row][col].isAlive = false;
+          } else if (getNumberOfAliveNeighbors(grid, row, col) > 3) {
+            newGridTest[row][col].isAlive = false;
+          } else {
+            newGridTest[row][col].isAlive = true;
+          }
+        } else {
+          if (getNumberOfAliveNeighbors(grid, row, col) === 3) {
+            newGridTest[row][col].isAlive = true;
+          }
+        }
+      }
+    }
+
+    setGrid(newGridTest);
   };
 
   return (
     <>
-    <button onClick={() => beginSimulation(grid)} >Start</button>
+    <button onClick={() => beginSimulation(grid)} >Advance one tick</button>
     <div className="grid">
       {grid.map((row, rowIndex) => (
         <div className="row" key={rowIndex}>
