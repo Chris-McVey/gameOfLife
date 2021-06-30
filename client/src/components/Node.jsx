@@ -3,13 +3,14 @@ import React from 'react';
 const Node = ({
   row,
   col,
-  onMouseDown,
-  onMouseEnter,
-  onMouseUp,
   grid,
-  mouseIsPressed
+  handleToggleAlive,
+  isAlive
 }) => {
   let extraClassName = '';
+  if (isAlive) {
+    extraClassName = 'isAlive';
+  };
 
   return (
     <div
@@ -18,6 +19,7 @@ const Node = ({
       role="presentation"
       row={row}
       col={col}
+      onClick={() => handleToggleAlive(grid, row, col)}
     />
   );
 };

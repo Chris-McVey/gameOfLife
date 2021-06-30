@@ -19,7 +19,19 @@ const createGrid = () => {
   return grid;
 };
 
+const getNewGridWithAliveToggled = (grid, row, col) => {
+  const newGrid = grid.slice();
+  const node = newGrid[row][col];
+  const newNode = {
+    ...node,
+    isAlive: !node.isAlive,
+  };
+  newGrid[row][col] = newNode;
+  return newGrid;
+};
+
 export {
   createGrid,
-  createNode
+  createNode,
+  getNewGridWithAliveToggled
 };
