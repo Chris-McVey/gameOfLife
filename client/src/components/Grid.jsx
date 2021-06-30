@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Node from './Node.jsx';
 import { createGrid, getNewGridWithAliveToggled } from '../utilityFunctions/gridHelpers.js';
-
+import { getNumberOfAliveNeighbors } from '../utilityFunctions/simulationHelpers.js';
 const Grid = () => {
   const [grid, setGrid] = useState([]);
 
@@ -16,7 +16,13 @@ const Grid = () => {
     setGrid(newGrid);
   };
 
+  const beginSimulation = (grid) => {
+    console.log(getNumberOfAliveNeighbors(grid, 0, 0))
+  };
+
   return (
+    <>
+    <button onClick={() => beginSimulation(grid)} >Start</button>
     <div className="grid">
       {grid.map((row, rowIndex) => (
         <div className="row" key={rowIndex}>
@@ -36,6 +42,7 @@ const Grid = () => {
         </div>
       ))}
     </div>
+    </>
   )
 };
 
