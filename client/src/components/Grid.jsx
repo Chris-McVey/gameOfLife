@@ -16,7 +16,7 @@ const Grid = () => {
     setGrid(newGrid);
   };
 
-  const beginSimulation = (grid) => {
+  const simulateOneGeneration = (grid) => {
     const newGridTest = createGrid();
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid[row].length; col++) {
@@ -37,11 +37,19 @@ const Grid = () => {
     }
 
     setGrid(newGridTest);
+    return newGridTest;
+  };
+
+  const beginSimulation = (generation) => {
+    setInterval(() => {
+      generation = simulateOneGeneration(generation);
+    }, 200);
   };
 
   return (
     <>
-    <button onClick={() => beginSimulation(grid)} >Advance one tick</button>
+    <button onClick={() => simulateOneGeneration(grid)} >Advance one tick</button>
+    <button onClick={() => beginSimulation(grid)} >Start simulation</button>
     <div className="grid">
       {grid.map((row, rowIndex) => (
         <div className="row" key={rowIndex}>
