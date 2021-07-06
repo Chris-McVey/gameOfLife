@@ -3,8 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Node from './Node.jsx';
 import { createGrid, getNewGridWithAliveToggled } from '../utilityFunctions/gridHelpers.js';
 import { getNumberOfAliveNeighbors } from '../utilityFunctions/simulationHelpers.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../../../redux/counter/counterSlice.js'
+
 const Grid = () => {
   const [grid, setGrid] = useState([]);
+  const count = useSelector(state => state.counter.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const startingGrid = createGrid();
@@ -37,6 +42,7 @@ const Grid = () => {
     }
 
     setGrid(newGridTest);
+    dispatch(increment());
     return newGridTest;
   };
 
@@ -50,6 +56,7 @@ const Grid = () => {
     <>
     <button onClick={() => simulateOneGeneration(grid)} >Advance one tick</button>
     <button onClick={() => beginSimulation(grid)} >Start simulation</button>
+    <div>Generation: {count}</div>
     <div className="grid">
       {grid.map((row, rowIndex) => (
         <div className="row" key={rowIndex}>
