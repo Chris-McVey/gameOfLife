@@ -51,11 +51,6 @@ const getNumberOfAliveNeighbors = (grid, row, col) => {
   return aliveNeighbors
 };
 
-const getNewGameState = (grid) => {
-
-};
-
 export {
   getNumberOfAliveNeighbors,
-  getNewGameState
-}
+};
