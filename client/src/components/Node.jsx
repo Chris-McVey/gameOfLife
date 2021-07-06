@@ -3,7 +3,6 @@ import React from 'react';
 const Node = ({
   row,
   col,
-  grid,
   handleToggleAlive,
   isAlive
 }) => {
@@ -19,7 +18,7 @@ const Node = ({
       role="presentation"
       row={row}
       col={col}
-      onClick={() => handleToggleAlive(grid, row, col)}
+      onClick={() => handleToggleAlive(row, col)}
     />
   );
 };
